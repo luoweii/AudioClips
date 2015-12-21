@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ClipsFrameLayout">
+        <attr name="clip_progressHeight" format="dimension" />
+        <attr name="clip_startId" format="reference" />
+        <attr name="clip_endId" format="reference" />
+        <attr name="clip_background" format="reference" />
+        <attr name="clip_clipsOverColor" format="reference" />
+        <attr name="clip_clipsMinSecond" format="integer" />
+        <attr name="clip_point_width" format="dimension" />
+        <attr name="clip_point_color" format="color" />
+    </declare-styleable>
+</resources>
