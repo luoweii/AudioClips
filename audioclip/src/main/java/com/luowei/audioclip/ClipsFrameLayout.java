@@ -44,7 +44,7 @@ public class ClipsFrameLayout extends FrameLayout {
         final int startView = typedArray.getResourceId(R.styleable.ClipsFrameLayout_clip_startId, 0);
         final int endView = typedArray.getResourceId(R.styleable.ClipsFrameLayout_clip_endId, 0);
         int bgId = typedArray.getResourceId(R.styleable.ClipsFrameLayout_clip_background, 0);
-        clipsOverColor = typedArray.getColor(R.styleable.ClipsFrameLayout_clip_clipsOverColor, Color.parseColor("#98765432"));
+        clipsOverColor = typedArray.getColor(R.styleable.ClipsFrameLayout_clip_clipsOverColor, Color.parseColor("#87654321"));
         pointWidth = typedArray.getDimension(R.styleable.ClipsFrameLayout_clip_point_width, 1);
         paint.setStrokeWidth(pointWidth);
         pointColor = typedArray.getColor(R.styleable.ClipsFrameLayout_clip_point_color, Color.WHITE);
@@ -74,7 +74,7 @@ public class ClipsFrameLayout extends FrameLayout {
                                 }
                                 cmtvStart.setTranslationX(x);
                                 cmtvStart.setSecond(getSecondByPosition(x + cmtvStart.getWidth() / 2));
-                                invalidate();
+//                                invalidate();
                                 break;
                         }
                         if (startClipsTouchListener != null)
@@ -97,7 +97,7 @@ public class ClipsFrameLayout extends FrameLayout {
                                 }
                                 cmtvEnd.setTranslationX(x);
                                 cmtvEnd.setSecond(getSecondByPosition(x + cmtvEnd.getWidth() / 2));
-                                invalidate();
+//                                invalidate();
                                 break;
                         }
                         return true;

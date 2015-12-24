@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.luowei.audioclips.MainActivity">
 
     <com.luowei.audioclip.ClipsFrameLayout
         android:id="@+id/clipsFrameLayout"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="210dp"
         app:clip_background="@drawable/bg_clips"
         app:clip_clipsMinSecond="10"
         app:clip_endId="@+id/cmtvEnd"
-        app:clip_progressHeight="190dp"
+        app:clip_progressHeight="180dp"
+        app:clip_point_width="1dp"
         app:clip_startId="@+id/cmtvStart">
 
         <ImageView
@@ -48,7 +50,7 @@
             android:gravity="bottom|center_horizontal"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:paddingTop="180dp"
+            android:paddingTop="170dp"
             android:textColor="#888"
             android:textSize="14sp" />
 
@@ -60,8 +62,29 @@
             android:gravity="bottom|center_horizontal"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:paddingTop="180dp"
+            android:paddingTop="170dp"
             android:textColor="#888"
             android:textSize="14sp" />
     </com.luowei.audioclip.ClipsFrameLayout>
-</RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="playOnClick"
+            android:text="播放" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clipsOnClick"
+            android:text="剪辑" />
+    </LinearLayout>
+</LinearLayout>
