@@ -61,19 +61,19 @@ public class ClipsFrameLayout extends FrameLayout {
             public void run() {
                 cmtvStart = (ClipsMarkerTextView) findViewById(startView);
                 cmtvStart.setPointWidth(pointWidth);
-                cmtvStart.setTranslationX(getWidth() / 3);
-                cmtvStart.setSecond(getSecondByPosition(getWidth() / 3 + cmtvStart.getWidth() / 2));
+                cmtvStart.setTranslationX(getWidth() / 3f);
+                cmtvStart.setSecond(getSecondByPosition(getWidth() / 3f + cmtvStart.getWidth() / 2f));
                 cmtvStart.setOnTouchListener(new OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_MOVE:
-                                float x = event.getRawX() - cmtvStart.getWidth() / 2;
+                                float x = event.getRawX() - cmtvStart.getWidth() / 2f;
                                 if (cmtvEnd.getTranslationX() - x < getPositionBySecond(minSecond)) {
                                     return false;
                                 }
                                 cmtvStart.setTranslationX(x);
-                                cmtvStart.setSecond(getSecondByPosition(x + cmtvStart.getWidth() / 2));
+                                cmtvStart.setSecond(getSecondByPosition(x + cmtvStart.getWidth() / 2f));
 //                                invalidate();
                                 break;
                         }
@@ -84,19 +84,19 @@ public class ClipsFrameLayout extends FrameLayout {
                 });
                 cmtvEnd = (ClipsMarkerTextView) findViewById(endView);
                 cmtvEnd.setPointWidth(pointWidth);
-                cmtvEnd.setTranslationX(getWidth() * 2 / 3);
-                cmtvEnd.setSecond(getSecondByPosition(getWidth() * 2 / 3 + cmtvEnd.getWidth() / 2));
+                cmtvEnd.setTranslationX(getWidth() * 2f / 3f);
+                cmtvEnd.setSecond(getSecondByPosition(getWidth() * 2f / 3f + cmtvEnd.getWidth() / 2f));
                 cmtvEnd.setOnTouchListener(new OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_MOVE:
-                                float x = event.getRawX() - cmtvStart.getWidth() / 2;
+                                float x = event.getRawX() - cmtvStart.getWidth() / 2f;
                                 if (x - cmtvStart.getTranslationX() < getPositionBySecond(minSecond)) {
                                     return false;
                                 }
                                 cmtvEnd.setTranslationX(x);
-                                cmtvEnd.setSecond(getSecondByPosition(x + cmtvEnd.getWidth() / 2));
+                                cmtvEnd.setSecond(getSecondByPosition(x + cmtvEnd.getWidth() / 2f));
 //                                invalidate();
                                 break;
                         }
@@ -127,8 +127,8 @@ public class ClipsFrameLayout extends FrameLayout {
 
         if (cmtvStart != null && cmtvEnd != null) {
             paint.setColor(clipsOverColor);
-            float left = cmtvStart.getTranslationX() + cmtvStart.getWidth() / 2;
-            float right = cmtvEnd.getTranslationX() + cmtvEnd.getWidth() / 2;
+            float left = cmtvStart.getTranslationX() + cmtvStart.getWidth() / 2f;
+            float right = cmtvEnd.getTranslationX() + cmtvEnd.getWidth() / 2f;
             canvas.drawRect(left, 0, right, progressHeight, paint);
         }
     }
@@ -140,10 +140,10 @@ public class ClipsFrameLayout extends FrameLayout {
 
     public void setMaxProgress(int maxProgress) {
         this.maxProgress = maxProgress;
-        cmtvStart.setTranslationX(getWidth() / 3);
-        cmtvStart.setSecond(getSecondByPosition(getWidth() / 3 + cmtvStart.getWidth() / 2));
-        cmtvEnd.setTranslationX(getWidth() * 2 / 3);
-        cmtvEnd.setSecond(getSecondByPosition(getWidth() * 2 / 3 + cmtvEnd.getWidth() / 2));
+        cmtvStart.setTranslationX(getWidth() / 3f);
+        cmtvStart.setSecond(getSecondByPosition(getWidth() / 3f + cmtvStart.getWidth() / 2f));
+        cmtvEnd.setTranslationX(getWidth() * 2f / 3f);
+        cmtvEnd.setSecond(getSecondByPosition(getWidth() * 2f / 3f + cmtvEnd.getWidth() / 2f));
     }
 
     public void setProgress(int progress) {

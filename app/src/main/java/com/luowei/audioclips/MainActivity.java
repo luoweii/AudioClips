@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         tvDuration = (TextView) findViewById(R.id.tvDuration);
         btnPlay = (Button) findViewById(R.id.btnPlay);
 
-        clipsFrameLayout.post(new Runnable() {
+        clipsFrameLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        });
+        }, 200);
     }
 
     public String getFormatTime(int second) {
