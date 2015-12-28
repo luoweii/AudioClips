@@ -70,11 +70,11 @@ dependencies {
     </com.luowei.audioclip.ClipsFrameLayout>
 ```
 ####标签属性说明
-clip_progressHeight: 播放进度条高度
-clip_startId: 剪辑开始标记的资源Id
-clip_endId: 剪辑结束标记的资源Id
-clip_background: 剪辑的背景图标
-clip_clipsOverColor: 剪辑的覆盖颜色
-clip_clipsMinSecond: 剪辑的最小时间
-clip_point_width: 播放进度条的指定的宽度
-clip_point_color: 播放进度条的颜色
+*clip_progressHeight: 播放进度条高度
+*clip_startId: 剪辑开始标记的资源Id
+*clip_endId: 剪辑结束标记的资源Id
+*clip_background: 剪辑的背景图标
+*clip_clipsOverColor: 剪辑的覆盖颜色
+*clip_clipsMinSecond: 剪辑的最小时间
+*clip_point_width: 播放进度条的指定的宽度
+*clip_point_color: 播放进度条的颜色
