@@ -8,8 +8,8 @@ dependencies {
 
 配置
 -------------
-`
-<com.luowei.audioclip.ClipsFrameLayout
+
+    <com.luowei.audioclip.ClipsFrameLayout
         android:id="@+id/clipsFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="210dp"
@@ -68,4 +68,4 @@ dependencies {
             android:textColor="#888"
             android:textSize="14sp" />
     </com.luowei.audioclip.ClipsFrameLayout>
-    `
+
