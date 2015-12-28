@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ClipsFrameLayout clipsFrameLayout;
     TextView tvDuration;
     Button btnPlay;
-    MediaPlayer mp = new MediaPlayer();
+    MediaPlayer mp;
 
 
     @Override
@@ -36,14 +36,12 @@ public class MainActivity extends AppCompatActivity {
         clipsFrameLayout = (ClipsFrameLayout) findViewById(R.id.clipsFrameLayout);
         tvDuration = (TextView) findViewById(R.id.tvDuration);
         btnPlay = (Button) findViewById(R.id.btnPlay);
+        mp = MediaPlayer.create(this, R.raw.fade);
 
         clipsFrameLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
                 try {
-                    AssetFileDescriptor assetFileDescriptor = getAssets().openFd("nsn.mp3");
-                    mp.setDataSource(assetFileDescriptor.getFileDescriptor());
-                    mp.prepare();
                     int second = (mp.getDuration() / 1000);
                     clipsFrameLayout.setMaxProgress(second);
                     clipsFrameLayout.setProgress(clipsFrameLayout.getStartClips());
@@ -108,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void clipsOnClick(View view) {
         try {
-            File targetFile = new File(Environment.getExternalStorageDirectory() + "/audioclips", "nsn" + System.currentTimeMillis() + ".mp3");
+            File targetFile = new File(Environment.getExternalStorageDirectory() + "/audioclips", "fade" + System.currentTimeMillis() + ".mp3");
             if (!targetFile.getParentFile().exists()) targetFile.getParentFile().mkdirs();
-            InputStream is = getAssets().open("nsn.mp3");
+            InputStream is = getResources().openRawResource(R.raw.fade);
             MusicEditor.editorMusic(is, targetFile, clipsFrameLayout.getStartClips(),
                     clipsFrameLayout.getEndClips(), clipsFrameLayout.getMaxProgress());
             Toast.makeText(this, "剪辑成功,文件保存在: "+targetFile, Toast.LENGTH_LONG).show();
