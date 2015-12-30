@@ -9,5 +9,6 @@
         <attr name="clip_clipsMinSecond" format="integer" />
         <attr name="clip_point_width" format="dimension" />
         <attr name="clip_point_color" format="color" />
+        <attr name="clip_waveformColor" format="color" />
     </declare-styleable>
 </resources>

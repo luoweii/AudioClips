@@ -9,9 +9,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.luowei.audioclip.soundfile.SoundFile;
 
 /**
  * 剪辑布局
@@ -30,6 +33,10 @@ public class ClipsFrameLayout extends FrameLayout {
     private OnTouchListener startClipsTouchListener;
     private int pointColor;
     private float pointWidth;
+
+    private Paint wavePaint;
+    private SoundFile soundFile;
+    private float[] smoothedGains;
 
     public ClipsFrameLayout(Context context) {
         this(context, null);
@@ -52,9 +59,14 @@ public class ClipsFrameLayout extends FrameLayout {
         if (minSecond < 1 || minSecond > maxProgress/2) {
             minSecond = 10;
         }
+        int waveformColor = typedArray.getColor(R.styleable.ClipsFrameLayout_clip_waveformColor, Color.GREEN);
         typedArray.recycle();
 
         cfBackground = BitmapFactory.decodeResource(getResources(), bgId);
+        wavePaint = new Paint();
+        wavePaint.setColor(waveformColor);
+        wavePaint.setStrokeWidth(0);
+        wavePaint.setAntiAlias(false);
 
         post(new Runnable() {
             @Override
@@ -121,6 +133,15 @@ public class ClipsFrameLayout extends FrameLayout {
             canvas.drawBitmap(cfBackground, null, r, null);
         }
 
+        if (soundFile != null) {
+            int width = getWidth();
+            int height = getHeight();
+            float ctr = progressHeight / 2f;
+            for (int i = 0; i < width; i+=2) {
+                canvas.drawLine(i, ctr-smoothedGains[i]/2, i, ctr+smoothedGains[i]/2, wavePaint);
+            }
+        }
+
         float x = (float) (progress * getWidth()) / (float) maxProgress;
         paint.setColor(pointColor);
         canvas.drawLine(x, 0, x, progressHeight, paint);
@@ -177,5 +198,32 @@ public class ClipsFrameLayout extends FrameLayout {
 
     public void setStartClipsTouchListener(OnTouchListener startClipsTouchListener) {
         this.startClipsTouchListener = startClipsTouchListener;
+    }
+
+    public void setSoundFile(SoundFile soundFile) {
+        this.soundFile = soundFile;
+        computeSmoothedGains();
+    }
+
+    private void computeSmoothedGains() {
+        int[] frameGains = soundFile.getFrameGains();
+        smoothedGains = new float[getWidth()];
+        int countPerWidth = frameGains.length / getWidth();
+        if (countPerWidth < 1) countPerWidth = 1;
+        for (int i = 0; i < smoothedGains.length; i++) {
+            float sum = 0;
+            for (int j = 0; j < countPerWidth; j++) {
+                sum += frameGains[j + i * countPerWidth];
+            }
+            smoothedGains[i] = sum/countPerWidth;
+        }
+        float maxGains = 0;
+        for (float a : smoothedGains) {
+            if (a > maxGains) maxGains = a;
+        }
+        float factor = (float) (progressHeight/Math.pow(maxGains,3));
+        for (int i = 0; i < smoothedGains.length;i++) {
+            smoothedGains[i] = (float) (Math.pow(smoothedGains[i],3) * factor);
+        }
     }
 }
