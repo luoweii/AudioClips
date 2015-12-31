@@ -1,7 +1,7 @@
 # AudioClips
 音频剪辑工具,能自定义许多元素
 
-![Screenshot](https://github.com/luoweii/AudioClips/picture/demo.jpg)
+![Screenshot](https://github.com/luoweii/AudioClips/blob/master/picture/demo.jpg)
 
 使用
 -----------------------------
