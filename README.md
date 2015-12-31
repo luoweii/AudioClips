@@ -1,7 +1,8 @@
 # AudioClips
 音频剪辑工具,能自定义许多元素
 
-<img src="picture/demo.jpg" width="40%" title="![Screenshot](https://github.com/luoweii/AudioClips/blob/master/picture/demo.jpg)">
+<!--![Screenshot](https://github.com/luoweii/AudioClips/blob/master/picture/demo.jpg)-->
+<img src="picture/demo.jpg" width="300">
 
 使用
 -----------------------------
